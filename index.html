@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gmail Dimensions</title>
+</head>
+<body>
+
+<center><h1>You have <span id="mail"></span> Mail</h1></center>
+
+<img src="https://greensofa24.github.io/GMAIL/inbox.png">
+<button onclick="
+if (mail >= firstdimprice) {
+mail -= firstdimprice;
+firstdims += 1;
+boughtfirstdims += 1;
+firstdimmulti *= boughtfirstdims % 10 == 0 ? 2 * multimulti : 1;
+firstdimprice *= boughtfirstdims % 10 == 0 ? 20 : 1;
+updateshowndims();
+}
+">Buy an inbox</button>
+<p>Price: <span id="firstdimprice">10</span><br> You Own: <span id="firstdims">0</span><br> You've Bought: <span id="boughtfirstdims">0</span><br> Multi: <span id="firstdimmulti">1</span></p>
+
+<img src="https://greensofa24.github.io/GMAIL/compose.png" width="100">
+<button onclick="
+if (mail >= seconddimprice) {
+mail -= seconddimprice;
+seconddims += 1;
+boughtseconddims += 1;
+seconddimmulti *= boughtseconddims % 10 == 0 ? 2 * multimulti : 1;
+seconddimprice *= boughtseconddims % 10 == 0 ? 200 : 1;
+updateshowndims();
+}
+">Buy a compose</button>
+<p>Price: <span id="seconddimprice">1000</span><br> You Own: <span id="seconddims">0</span><br> You've Bought: <span id="boughtseconddims">0</span><br> Multi: <span id="seconddimmulti">1</span></p>
+
+<img src="https://greensofa24.github.io/GMAIL/starred.png">
+<button onclick="
+if (mail >= thirddimprice) {
+mail -= thirddimprice;
+thirddims += 1;
+boughtthirddims += 1;
+thirddimmulti *= boughtthirddims % 10 == 0 ? 2 * multimulti : 1;
+thirddimprice *= boughtthirddims % 10 == 0 ? 2000 : 1;
+updateshowndims();
+}
+">Buy a starred</button>
+<p>Price: <span id="thirddimprice">1000000</span><br> You Own: <span id="thirddims">0</span><br> You've Bought: <span id="boughtthirddims">0</span><br> Multi: <span id="thirddimmulti">1</span></p>
+
+<img src="https://greensofa24.github.io/GMAIL/snoozed.png">
+<button onclick="
+if (mail >= fourthdimprice) {
+mail -= fourthdimprice;
+fourthdims += 1;
+boughtfourthdims += 1;
+fourthdimmulti *= boughtfourthdims % 10 == 0 ? 2 * multimulti : 1;
+fourthdimprice *= boughtfourthdims % 10 == 0 ? 20000 : 1;
+updateshowndims();
+}
+">Buy a snoozed</button>
+<p>Price: <span id="fourthdimprice">10000000000</span><br> You Own: <span id="fourthdims">0</span><br> You've Bought: <span id="boughtfourthdims">0</span><br> Multi: <span id="fourthdimmulti">1</span></p>
+
+<button onclick="if (fourthdims >= 10) {
+mail = 10;
+
+firstdimprice = 10;
+firstdims = 0;
+boughtfirstdims = 0;
+firstdimmulti = 1;
+
+seconddimprice = 1000;
+seconddims = 0;
+boughtseconddims = 0;
+seconddimmulti = 1;
+
+thirddimprice = 1000000;
+thirddims = 0;
+boughtthirddims = 0;
+thirddimmulti = 1;
+
+fourthdimprice = 10000000000;
+fourthdims = 0;
+boughtfourthdims = 0;
+fourthdimmulti = 1;
+
+multimulti *= multimulti;
+}
+">DELETE ALL MAIL</button>
+
+<script>
+var mail = 10;
+
+var firstdimprice = 10;
+var firstdims = 0;
+var boughtfirstdims = 0;
+var firstdimmulti = 1;
+
+var seconddimprice = 1000;
+var seconddims = 0;
+var boughtseconddims = 0;
+var seconddimmulti = 1;
+
+var thirddimprice = 1000000;
+var thirddims = 0;
+var boughtthirddims = 0;
+var thirddimmulti = 1;
+
+var fourthdimprice = 10000000000;
+var fourthdims = 0;
+var boughtfourthdims = 0;
+var fourthdimmulti = 1;
+
+var multimulti = 1;
+
+setInterval(function(){document.getElementById("mail").innerText = shorten(mail)}, 10);
+setInterval(function(){updatedims()}, 1000);
+function updatedims() {
+mail += firstdims * firstdimmulti;
+firstdims += seconddims * seconddimmulti;
+seconddims += thirddims * thirddimmulti;
+thirddims += fourthdims * fourthdimmulti;
+updateshowndims();
+};
+function updateshowndims() {
+document.getElementById("firstdimprice").innerText = shorten(firstdimprice);
+document.getElementById("firstdims").innerText = shorten(firstdims);
+document.getElementById("boughtfirstdims").innerText = shorten(boughtfirstdims);
+document.getElementById("firstdimmulti").innerText = shorten(firstdimmulti);
+
+document.getElementById("seconddimprice").innerText = shorten(seconddimprice);
+document.getElementById("seconddims").innerText = shorten(seconddims);
+document.getElementById("boughtseconddims").innerText = shorten(boughtseconddims);
+document.getElementById("seconddimmulti").innerText = shorten(seconddimmulti);
+
+document.getElementById("thirddimprice").innerText = shorten(thirddimprice);
+document.getElementById("thirddims").innerText = shorten(thirddims);
+document.getElementById("boughtthirddims").innerText = shorten(boughtthirddims);
+document.getElementById("thirddimmulti").innerText = shorten(thirddimmulti);
+
+document.getElementById("fourthdimprice").innerText = shorten(fourthdimprice);
+document.getElementById("fourthdims").innerText = shorten(fourthdims);
+document.getElementById("boughtfourthdims").innerText = shorten(boughtfourthdims);
+document.getElementById("fourthdimmulti").innerText = shorten(fourthdimmulti);
+};
+
+function rd(n) {
+var s = String(n);
+if (s.indexOf(".") == -1) {
+s += ".";
+}
+s += "00";
+return parseFloat(s.substring(0, s.indexOf(".") + 3));
+}
+function shorten(n) {
+if (n >= 1e3 && n < 1e6) return rd(n / 1e3) + "K";
+if (n >= 1e6 && n < 1e9) return rd(n / 1e6) + "M";
+if (n >= 1e9 && n < 1e12) return rd(n / 1e9) + "B";
+if (n >= 1e12 && n < 1e15) return rd(n / 1e12) + "T";
+if (n >= 1e15 && n < 1e18) return rd(n / 1e15) + "Qa";
+if (n >= 1e18 && n < 1e21) return rd(n / 1e18) + "Qu";
+if (n >= 1e21 && n < 1e24) return rd(n / 1e21) + "Sx";
+if (n >= 1e24 && n < 1e27) return rd(n / 1e24) + "Sp";
+if (n >= 1e27 && n < 1e30) return rd(n / 1e27) + "O";
+if (n >= 1e30 && n < 1e33) return rd(n / 1e30) + "N";
+if (n >= 1e33 && n < 1e36) return rd(n / 1e33) + "D";
+return n;
+};
+</script>
+
+</body>
+</html>
